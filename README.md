@@ -63,7 +63,7 @@ Para la rotación fluida a 60 FPS, utilizamos el hook useFrame de Fiber. Esto pe
 Clonar el repo:
 
 Bash
-git clone https://github.com/tu-usuario/tu-repo.git
+git clone https://github.com/xwlspider/restauranteeo32/upload/main
 Instalar dependencias:
 
 Bash
