@@ -4,6 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { AwesomeButton } from "../../../core/ui/AwesomeButton";
 import { INGREDIENTS } from "../data/ingredientes";
 import { useSandwichContext } from "../hooks/SanducheContext";
+import { router } from "expo-router";
 
 type IngredientKey = keyof typeof INGREDIENTS;
 
@@ -122,7 +123,7 @@ export function BottomUI() {
               color="#fff"
               backgroundColor="#7C4DFF"
               bold
-              onPress={() => setAddedToCart(true)}
+              onPress={() => router.push("/order/ExtrasScreen")}
             />
           </>
         )}

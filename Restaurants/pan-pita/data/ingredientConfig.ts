@@ -27,9 +27,39 @@ export const ingredientVisualConfig = {
     positionY: 0.15,
     rotation: [0, 0, 0],
   },
-  default: {
+  avocado: {
     scaleFactor: 1,
-    positionY: 0,
+    positionY: 0.15,
     rotation: [0, 0, 0],
   },
+  lettuce: {
+    scaleFactor: 1,
+    positionY: 0.15,
+    rotation: [0, 0, 0],
+  },
+  onion: {
+    scaleFactor: 1,
+    positionY: 0.15,
+    rotation: [0, 0, 0],
+  },
+  cucumber: {
+    scaleFactor: 1,
+    positionY: 0.15,
+    rotation: [0, 0, 0],
+  },
+  mushrooms: {
+    scaleFactor: 1,
+    positionY: 0.15,
+    rotation: [0, 0, 0],
+  },
+  bacon: {
+    scaleFactor: 1,
+    positionY: 0.15,
+    rotation: [0, 0, 0],
+  },
+  default: {
+    scaleFactor: 0,
+    positionY: 0,
+    rotation: [0,0,0]
+  }
 } satisfies Record<IngredientName | "default", VisualConfig>;

@@ -4,7 +4,11 @@ import { SandwichProvider } from "../../Restaurants/pan-pita/hooks/SanducheConte
 export default function SandwichLayout() {
   return (
     <SandwichProvider>
-      <Stack />
+       <Stack
+        screenOptions={{
+          headerShown: false, // Aquí desactivamos el header
+        }}
+      />
     </SandwichProvider>
   );
 }

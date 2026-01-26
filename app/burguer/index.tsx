@@ -6,7 +6,7 @@ import { SceneCanvas } from "../../core/canvas/SceneCanvas";
 export default function BurgerScreen() {
   return (
     <View style={{ flex: 1 }}>
-      <SceneCanvas>
+      <SceneCanvas extras={[]}>
         <Burger />
       </SceneCanvas>
 

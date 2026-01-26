@@ -55,13 +55,13 @@ export function BottomUI() {
                   fontWeight: "bold",
                 }}
               >
-                La Sandwicherie
+                Mordida Mixta
               </Text>
-              <Text style={{ marginLeft: 8 }}>⭐️⭐️⭐️⭐️⭐️</Text>
+              <Text style={{ marginLeft: 8 }}>Apetito feliz</Text>
             </View>
   
             <Text style={{ color: "#666" }}>
-              Fresh and delicious sandwiches made with love
+            Un bocado irresistible: enamora a primera mordida
             </Text>
   
             <View

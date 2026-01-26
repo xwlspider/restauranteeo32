@@ -41,8 +41,9 @@ export function Ingredient3D({
             removeIngredient(ingredient);
           }}
         >
-          <mesh>
-            <planeGeometry args={[0.25, 0.25]} />
+          <mesh position={[0.7, 0.042, 0]}>
+            <planeGeometry args={[0.9, 0.16]} 
+            />
             <meshStandardMaterial
               color="white"
               opacity={0.5}

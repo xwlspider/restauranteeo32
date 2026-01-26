@@ -1,6 +1,5 @@
 import { useBurger } from "../hooks/BurgerContext";
 import { Ingredient3D } from "./Ingredient3D";
-import type { BurgerIngredient } from "../hooks/BurgerContext";
 import { BaseIngredient } from "../data/ingredients";
 
 
