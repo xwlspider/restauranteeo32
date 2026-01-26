@@ -1,9 +1,24 @@
-import { ScrollView, Text, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { router } from "expo-router";
 
 import { AwesomeButton } from "../../../core/ui/AwesomeButton";
 import { INGREDIENTS } from "../data/ingredients";
 import { useBurger } from "../hooks/BurgerContext";
+
+// Importar componentes reutilizables
+import {
+  SectionHeader,
+  PriceCard,
+  InfoCard,
+  SuccessHeader,
+  SectionLabel,
+  Divider,
+  GradientContainer,
+  FooterInfo,
+} from "../../../components/ui/BurgerUIComponents";
+
+import { commonStyles as styles } from "../../../components/CommonBottomUI.styles";
 
 type IngredientKey = keyof typeof INGREDIENTS;
 
@@ -14,119 +29,101 @@ export function BottomUI() {
   const { addIngredient, total, addedToCart, setAddedToCart } = useBurger();
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <View style={{ padding: 20 }}>
-        {addedToCart ? (
-          <View>
-            <Text style={{ fontSize: 16, fontWeight: "bold" }}>
-              Total - ${total.toFixed(2)}
-            </Text>
-  
-            <Text
-              style={{
-                color: "#666",
-                marginTop: 4,
-                marginBottom: 16,
-              }}
-            >
-              Order sent successfully, it will be ready in 5 minutes! Wawa
-              Sensei will directly deliver it to your home 🛵
-            </Text>
-  
-            <AwesomeButton
-              title="Cancel order"
-              color="#fff"
-              backgroundColor="#7C4DFF"
-              bold
-              onPress={() => setAddedToCart(false)}
-            />
-          </View>
-        ) : (
-          <>
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 22,
-                  fontWeight: "bold",
-                }}
-              >
-                Mordida Mixta
-              </Text>
-              <Text style={{ marginLeft: 8 }}>Apetito feliz</Text>
+    <SafeAreaView style={styles.safeArea}>
+      <ScrollView
+        style={styles.scrollView}
+        showsVerticalScrollIndicator={true}
+        indicatorStyle="default"
+      >
+        <GradientContainer style={styles.container}>
+          {addedToCart ? (
+            <View style={styles.successContainer}>
+              <SuccessHeader title="¡Pedido Enviado!" />
+
+              <PriceCard
+                label="Total"
+                amount={total}
+                color="#7C4DFF"
+                containerStyle={styles.totalCard}
+              />
+
+              <InfoCard
+                icon="🛵"
+                text="Tu pedido estará listo en 5 minutos. Wawa Sensei lo entregará directamente en tu hogar."
+              />
+
+              <AwesomeButton
+                title="Cancelar pedido"
+                color="#fff"
+                backgroundColor="#7C4DFF"
+                bold
+                onPress={() => setAddedToCart(false)}
+              />
             </View>
-  
-            <Text style={{ color: "#666" }}>
-            Un bocado irresistible: enamora a primera mordida
-            </Text>
-  
-            <View
-              style={{
-                height: 1,
-                backgroundColor: "#ececec",
-                marginVertical: 20,
-              }}
-            />
-  
-            <Text
-              style={{
-                fontSize: 16,
-                fontWeight: "bold",
-                textAlign: "center",
-              }}
-            >
-              Your Creation ($5.00)
-            </Text>
-  
-            <Text
-              style={{
-                textAlign: "center",
-                color: "#666",
-              }}
-            >
-              Compose your sandwich by adding ingredients
-            </Text>
-  
-            <ScrollView
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              style={{
-                marginTop: 8,
-                marginBottom: 8,
-                marginHorizontal: -20,
-              }}
-              contentContainerStyle={{ paddingHorizontal: 20 }}
-            >
-              {Object.keys(INGREDIENTS).map((key) => {
-                const ingredient = key as IngredientKey;
-  
-                return (
-                  <View key={ingredient} style={{ padding: 10 }}>
-                    <AwesomeButton
-                      title={`${INGREDIENTS[ingredient].icon} ${capitalizeFirstLetter(
-                        ingredient
-                      )} (+$${INGREDIENTS[ingredient].price.toFixed(2)})`}
-                      onPress={() => addIngredient(ingredient)}
-                    />
-                  </View>
-                );
-              })}
-            </ScrollView>
-  
-            <AwesomeButton
-              title={`Add to cart ($${total.toFixed(2)})`}
-              color="#fff"
-              backgroundColor="#7C4DFF"
-              bold
-              onPress={() => setAddedToCart(true)}
-            />
-          </>
-        )}
-      </View>
+          ) : (
+            <>
+              <SectionHeader
+                title="Mordida Mixta"
+                badge="😋 Apetito feliz"
+                subtitle="Un bocado irresistible: enamora a primera mordida"
+              />
+
+              <Divider />
+
+              <View style={styles.creationSection}>
+                <View style={styles.creationHeader}>
+                  <SectionLabel emoji="" text="Tu Creación" />
+                </View>
+
+                <SectionLabel
+                  emoji=""
+                  text="Personaliza tu hamburguesa agregando ingredientes"
+                  style={styles.creationSubtitle}
+                />
+              </View>
+
+              <View style={styles.ingredientsSection}>
+                <SectionLabel emoji="🧩" text="Ingredientes Disponibles" />
+
+                <ScrollView
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  style={styles.ingredientsScroll}
+                  contentContainerStyle={styles.ingredientsContent}
+                >
+                  {Object.keys(INGREDIENTS).map((key) => {
+                    const ingredient = key as IngredientKey;
+
+                    return (
+                      <View key={ingredient} style={styles.ingredientItem}>
+                        <AwesomeButton
+                          title={`${INGREDIENTS[ingredient].icon} ${capitalizeFirstLetter(
+                            ingredient
+                          )} (+$${INGREDIENTS[ingredient].price.toFixed(2)})`}
+                          onPress={() => addIngredient(ingredient)}
+                        />
+                      </View>
+                    );
+                  })}
+                </ScrollView>
+              </View>
+
+              <View style={styles.footer}>
+                <FooterInfo label="Total a pagar" amount={total} />
+
+                <AwesomeButton
+                  title="Agregar al carrito →"
+                  color="#fff"
+                  backgroundColor="#7C4DFF"
+                  bold
+                  onPress={() => router.push("/order/ExtrasScreen")}
+                />
+              </View>
+            </>
+          )}
+        </GradientContainer>
+      </ScrollView>
     </SafeAreaView>
   );
 }
+

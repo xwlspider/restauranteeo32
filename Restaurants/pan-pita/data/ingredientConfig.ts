@@ -58,8 +58,9 @@ export const ingredientVisualConfig = {
     rotation: [0, 0, 0],
   },
   default: {
-    scaleFactor: 0,
+    scaleFactor: 1,
     positionY: 0,
     rotation: [0,0,0]
   }
 } satisfies Record<IngredientName | "default", VisualConfig>;
+//Verifica que este objeto cumpla con esta forma, pero mantén la identidad de mis datos reales

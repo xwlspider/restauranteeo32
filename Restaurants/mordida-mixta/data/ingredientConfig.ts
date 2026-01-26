@@ -63,3 +63,4 @@ export const ingredientVisualConfig = {
     rotation: [0, 0, 0],
   },
 } satisfies Record<IngredientName | "default", VisualConfig>;
+//Verifica que este objeto cumpla con esta forma, pero mantén la identidad de mis datos reales

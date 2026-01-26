@@ -1,3 +1,6 @@
+//Componente de Botón Universal. 
+// Es una versión personalizada del botón estándar que te permite mantener un diseño coherente en
+// toda la aplicación sin tener que repetir estilos
 import { Text, TouchableOpacity, View, GestureResponderEvent } from "react-native";
 
 interface AwesomeButtonProps {

@@ -1,53 +1,77 @@
-> Edited for use in IDX on 07/09/12
+🍔 Multi-Restaurant 3D Configurator
+React Native + Expo + Three.js (Fiber)
+Una aplicación móvil interactiva diseñada con React Native que permite a los usuarios personalizar sus pedidos en un entorno 3D inmersivo. Los clientes pueden armar hamburguesas y sándwiches ingrediente por ingrediente, viendo los cambios en tiempo real y calculando el costo dinámicamente.
 
-# Welcome to your Expo app 👋
+## 🚀 Características Principales
+Configurador 3D Realista: Visualización de ingredientes mediante modelos GLTF con iluminación y sombras en tiempo real.
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Modos de Visualización: * Modo Creación: Los ingredientes se separan para permitir una edición cómoda y clara.
 
-## Get started
+Modo Final: Los ingredientes se compactan y el modelo comienza una rotación de exhibición (60 FPS).
 
-#### Android
+Lógica de Negocio Inteligente: * Protección de estructura (no puedes quitar el pan base o la tapa).
 
-Android previews are defined as a `workspace.onStart` hook and started as a vscode task when the workspace is opened/started.
+Cálculo de precios dinámico basado en el tipo y tamaño del ingrediente.
 
-Note, if you can't find the task, either:
-- Rebuild the environment (using command palette: `IDX: Rebuild Environment`), or
-- Run `npm run android -- --tunnel` command manually run android and see the output in your terminal. The device should pick up this new command and switch to start displaying the output from it.
+Arquitectura Multi-Contexto: Gestión de estados independiente para el flujo de Sándwiches, Hamburguesas y Extras (Complementos).
 
-In the output of this command/task, you'll find options to open the app in a
+Interfaz de Usuario "Awesome": Componentes reutilizables y personalizados con retroalimentación visual táctil.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## 🛠️ Stack Tecnológico
+Framework: Expo (React Native)
 
-You'll also find options to open the app's developer menu, reload the app, and more.
+Motor 3D: React Three Fiber & Drei
 
-#### Web
+Animaciones: React Spring (para el efecto "pop-in" de los ingredientes).
 
-Web previews will be started and managred automatically. Use the toolbar to manually refresh.
+Lenguaje: TypeScript (con tipado estricto para configuraciones visuales).
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## 📂 Estructura del Proyecto (Lógica Core)
+La aplicación se divide en tres pilares fundamentales:
 
-## Get a fresh project
+### 1. Gestión de Estado (Context API)
+Utilizamos diferentes proveedores para asegurar que la data sea consistente:
 
-When you're ready, run:
+OrderProvider: Maneja el carrito global y los complementos (papas, bebidas).
 
-```bash
-npm run reset-project
-```
+BurgerProvider / SandwichProvider: Controlan la "receta" actual, manejando IDs únicos para cada rodaja o ingrediente añadido.
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### 2. Motores de Renderizado (Ingredient3D)
+Cada ingrediente es un componente autónomo que:
 
-## Learn more
+Carga su modelo .glb usando Expo-Asset.
 
-To learn more about developing your project with Expo, look at the following resources:
+Aplica escalas y rotaciones personalizadas mediante un objeto de configuración que utiliza el operador satisfies.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+Incluye un "Botón de Eliminación" en el espacio 3D con detección de colisiones (onClick).
 
-## Join the community
+### 3. Sistema de Configuración
+Para escalar la app fácilmente, usamos diccionarios de datos:
 
-Join our community of developers creating universal apps.
+INGREDIENTS: Precios, iconos y rutas de archivos.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+visualConfig: Ajustes finos de posición Y y escala para que cada modelo encaje perfectamente sobre el anterior.
+
+## 💡 Detalles Técnicos Destacados
+### El Operador satisfies
+Utilizamos satisfies Record<IngredientName | "default", VisualConfig> para garantizar que cada ingrediente tenga obligatoriamente una configuración de escala y posición, evitando errores de renderizado en tiempo de ejecución.
+
+### Animaciones fuera del Loop de React
+Para la rotación fluida a 60 FPS, utilizamos el hook useFrame de Fiber. Esto permite manipular las propiedades de las mallas 3D directamente a través de refs, evitando re-renderizados costosos de React y manteniendo la app ligera.
+
+## 🎮 Instalación y Uso
+Clonar el repo:
+
+Bash
+git clone https://github.com/tu-usuario/tu-repo.git
+Instalar dependencias:
+
+Bash
+npm install
+Ejecutar en modo desarrollo:
+
+Bash
+npm run web -- --tunnel
+Abrir en Expo Go: Escanea el código QR con tu móvil Android o iOS.
+
+Nota: Esta aplicación fue desarrollada enfocándose en la modularidad. Es muy sencillo añadir nuevos restaurantes o ingredientes simplemente actualizando los archivos de configuración de datos.

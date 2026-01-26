@@ -23,6 +23,7 @@ export const INGREDIENTS = {
 
   patty: { src: Patty, price: 2, icon: "🥩" },
 } as const;
+//Este objeto es de solo lectura y sus valores nunca van a cambiar
 
 export type IngredientName = keyof typeof INGREDIENTS;
 

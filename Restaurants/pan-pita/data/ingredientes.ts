@@ -9,7 +9,10 @@ import Cucumber from "../../../models/Cucumber_Slice.glb"
 import Bacon from "../../../models/Bacon_Slice.glb"
 import Mushrooms from "../../../models/Mushroom_Slice.glb"
 
-
+/**
+ * Diccionario Maestro de Ingredientes:
+ * Relaciona el modelo 3D, el precio y el icono visual.
+ */
 export const INGREDIENTS = {
   ham: { src: Ham, price: 1, icon: "🍖" },
   cheese: { src: Cheese, price: 0.8, icon: "🧀" },
@@ -21,21 +24,30 @@ export const INGREDIENTS = {
   cucumber: { src: Cucumber, price: 0.5, icon: "🥒" },
   bacon: { src: Bacon, price: 0.5, icon: "🥓" },
   mushrooms: { src: Mushrooms, price: 0.5, icon: "🍄" },
- 
 } as const;
+//Este objeto es de solo lectura y sus valores nunca van a cambiar
 
-
-// Todos los posibles
+// Tipo técnico que extrae todas las llaves (nombres) de los ingredientes
 export type IngredientName = keyof typeof INGREDIENTS;
 
-// SOLO los que se pueden agregar/quitar
+/**
+ * 
+ * Aquí es donde defines qué ingredientes aparecerán en la lista de "Añadir".
+ *
+ */
 export type ExtraIngredientName =
   | "ham"
   | "cheese"
   | "tomato"
-  | "bread";
+  | "bread"
+  | "avocado"
+  | "lettuce"
+  | "onion"
+  | "cucumber"
+  | "bacon"
+  | "mushrooms";
 
-// Ingrediente usado en el 3D
+
 export interface SandwichIngredient {
   id: number;
   name: IngredientName;
