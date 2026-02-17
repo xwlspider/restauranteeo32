@@ -72,7 +72,7 @@ export function BottomUI() {
                 badge="⭐️⭐️⭐️⭐️⭐️"
                 subtitle="Sándwiches frescos y deliciosos hechos con amor"
               />
-
+ 
               <Divider color="#ffc1cc" />
 
               <View style={styles.creationSection}>
