@@ -7,7 +7,7 @@
     "icon": "./assets/images/PedidosYaIcon.png",
     "scheme": "restauranteeo32",
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": false,
+    "newArchEnabled": true,
     "updates": {
       "url": "https://u.expo.dev/98506dae-5969-48e2-b09d-fc222f633c14",
       "enabled": true
