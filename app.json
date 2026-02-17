@@ -8,10 +8,30 @@
     "scheme": "restauranteeo32",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    "updates": {
+      "url": "https://u.expo.dev/98506dae-5969-48e2-b09d-fc222f633c14",
+      "enabled": true
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-updates",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/images/GatoBurger.png",
+          "color": "#F55D83"
+        }
+      ]
+    ],
     "ios": {
       "supportsTablet": true
     },
     "android": {
+      "package": "com.usuario.pushmaster",
+      "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/PedidosYaIcon.png",
@@ -25,10 +45,14 @@
       "output": "static",
       "favicon": "./assets/images/PedidosYaIcon.png"
     },
-
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "98506dae-5969-48e2-b09d-fc222f633c14"
+      }
     }
   }
 }
