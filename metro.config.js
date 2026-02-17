@@ -3,17 +3,12 @@ const { getDefaultConfig } = require("expo/metro-config");
 
 /** @type {import('expo/metro-config').MetroConfig} */
 const config = getDefaultConfig(__dirname);
+const { resolver } = config;
 
-[("js", "jsx", "json", "ts", "tsx", "cjs", "mjs")].forEach((ext) => {
-  if (config.resolver.sourceExts.indexOf(ext) === -1) {
-    config.resolver.sourceExts.push(ext);
-  }
-});
+// Módulos JS no estándar
+resolver.sourceExts = [...resolver.sourceExts, "cjs", "mjs"];
 
-["glb", "gltf", "png", "jpg"].forEach((ext) => {
-  if (config.resolver.assetExts.indexOf(ext) === -1) {
-    config.resolver.assetExts.push(ext);
-  }
-});
+// Assets: modelos 3D e imágenes
+resolver.assetExts = [...resolver.assetExts, "glb", "gltf", "bin", "mtl"];
 
 module.exports = config;
