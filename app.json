@@ -30,7 +30,7 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "com.usuario.pushmaster",
+      "package": "com.xwlspider.restauranteeo32",
       "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
