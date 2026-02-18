@@ -33,9 +33,10 @@
       [
         "expo-notifications",
         {
-          "icon": "./assets/images/GatoBurger.png",
-          "color": "#F55D83"
+          "icon": "./assets/notification-icon.png",
+          "color": "#E89090"
         }
+         
       ]
     ],
     "updates": {
